@@ -17,12 +17,12 @@ export class LoginComponent implements OnInit {
   constructor(private loginService: LoginService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
-    console.log(this.loginForm);
-
   }
 
   handleLogin(): void {
-    this.loginService.login();
+    if (this.loginForm.value) {
+      this.loginService.login(this.loginForm.value);
+    }
   }
 
   get username(): AbstractControl | null {
