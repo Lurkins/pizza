@@ -21,6 +21,9 @@ export class OrderPizzaComponent implements OnInit {
     Flavor: ['', Validators.required],
     Table_No: ['', Validators.required],
   });
+  submitSuccess = false;
+  submitError = false;
+  isLoading = false;
 
   ngOnInit(): void {
   }
@@ -30,9 +33,17 @@ export class OrderPizzaComponent implements OnInit {
   }
 
   onSubmitPizza(): void {
-    if (this.pizzaForm.value) {
-      this.orderService.createOrder(this.pizzaForm.value);
-    }
+    this.isLoading = true;
+    this.submitSuccess = false;
+    this.orderService.createOrder(this.pizzaForm.value).subscribe(
+      order => {
+        this.isLoading = false;
+        this.submitSuccess = true;
+        this.pizzaForm.reset();
+        setTimeout(() => this.submitSuccess = false, 3200);
+      },
+      error => console.log('Error', error)
+    );
   }
 
 }

@@ -1,0 +1,12 @@
+<div class="card w-25 mb-3">
+  <img src="https://img.pizza/300/300" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Order Number: {{ order.Order_ID}}</h5>
+    <p class="card-text">Crust: {{order.Crust}}</p>
+    <p class="card-text">Size: {{order.Size}}</p>
+    <p class="card-text">Flavor: {{order.Flavor}}</p>
+  </div>
+  <div class="card-body">
+    <button (click)="handleDeleteOrder()"type="button" class="btn btn-danger">Delete Order</button>
+  </div>
+</div>

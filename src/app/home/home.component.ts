@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { OrderService } from '../order.service';
 
 @Component({
   selector: 'app-home',
@@ -7,10 +6,9 @@ import { OrderService } from '../order.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  constructor(private orderService: OrderService) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.orderService.getOrders();
   }
 
 }
