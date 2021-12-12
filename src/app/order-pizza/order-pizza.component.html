@@ -1,10 +1,112 @@
 <div class="container">
   <div class="row">
-    <div class="col-8 d-flex justify-content-center">
-      <h1>Order Pizza</h1>
+    <div class="col-12 d-flex justify-content-between">
+      <h1>Pizza Builder</h1>
+      <div class="">
+        <button (click)="handleLogout()" class="btn btn-primary btn-sm" type="button">Logout</button>
+      </div>
     </div>
-    <div class="col-4 bg-info m-l-auto justify-content-center">
-      <button (click)="handleLogout()" class="btn btn-primary btn-sm" type="button">Logout</button>
+  </div>
+  <div class="row">
+    <div class="col-6"> 
+      <form [formGroup]="pizzaForm" (ngSubmit)="onSubmitPizza()">
+        <div class="card mb-3">
+          <div class="card-header text-center">
+            <h2>Size</h2>
+          </div>
+          <div class="card-body">
+            <div class="btn-group w-100" role="group" aria-label="Crust options">
+              <input type="radio" formControlName="Size" value="S" class="btn-check" name="Size" id="small" autocomplete="off">
+              <label class="btn btn-outline-primary" for="small">Small</label>
+            
+              <input type="radio" formControlName="Size" value="M" class="btn-check" name="Size" id="medium" autocomplete="off">
+              <label class="btn btn-outline-primary" for="medium">Medium</label>
+            
+              <input type="radio" formControlName="Size" value="L" class="btn-check" name="Size" id="large" autocomplete="off">
+              <label class="btn btn-outline-primary" for="large">Large</label>
+            </div>
+          </div>
+        </div>
+        <div class="card mb-3">
+          <div class="card-header text-center">
+            <h2>Crust</h2>
+          </div>
+          <div class="card-body">
+            <div class="btn-group w-100" role="group" aria-label="Crust options">
+              <input type="radio" formControlName="Crust" value="REGULAR" class="btn-check" name="Crust" id="regular" autocomplete="off">
+              <label class="btn btn-outline-primary" for="regular">Regular</label>
+            
+              <input type="radio" formControlName="Crust" value="THIN" class="btn-check" name="Crust" id="thin" autocomplete="off">
+              <label class="btn btn-outline-primary" for="thin">Thin</label>
+            
+              <input type="radio" formControlName="Crust" value="DEEP" class="btn-check" name="Crust" id="deep" autocomplete="off">
+              <label class="btn btn-outline-primary" for="deep">Deep Dish</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="card mb-3">
+          <div class="card-header text-center">
+            <h2>Flavor</h2>
+          </div>
+          <div class="card-body">
+            <div class="btn-group w-100" role="group" aria-label="Flavor options">
+              <input type="radio" formControlName="Flavor" value="CHEESE" class="btn-check" name="Flavor" id="cheese" autocomplete="off">
+              <label class="btn btn-outline-primary" for="cheese">Cheese</label>
+            
+              <input type="radio" formControlName="Flavor" value="PEPPERONI" class="btn-check" name="Flavor" id="pepperoni" autocomplete="off">
+              <label class="btn btn-outline-primary" for="pepperoni">Pepperoni</label>
+            
+              <input type="radio" formControlName="Flavor" value="SUPREME" class="btn-check" name="Flavor" id="supreme" autocomplete="off">
+              <label class="btn btn-outline-primary" for="supreme">Supreme</label>
+
+              <input type="radio" formControlName="Flavor" value="BBQ-CHICKEN" class="btn-check" name="Flavor" id="bbq-chicken" autocomplete="off">
+              <label class="btn btn-outline-primary" for="bbq-chicken">BBQ Chicken</label>
+
+              <input type="radio" formControlName="Flavor" value="HAWAIIAN" class="btn-check" name="Flavor" id="hawaiian" autocomplete="off">
+              <label class="btn btn-outline-primary" for="hawaiian">Hawaiian</label>
+
+              <input type="radio" formControlName="Flavor" value="VEGGIE" class="btn-check" name="Flavor" id="veggie" autocomplete="off">
+              <label class="btn btn-outline-primary" for="veggie">Veggie</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="card mb-3">
+          <div class="card-header text-center">
+            <h2>Table Number</h2>
+          </div>
+          <div class="card-body">
+            <div class="btn-group w-100" role="group" aria-label="Flavor options">
+              <input type="radio" formControlName="Table_No" value="1" class="btn-check" name="Table_No" id="table_1" autocomplete="off">
+              <label class="btn btn-outline-primary" for="table_1">1</label>
+            
+              <input type="radio" formControlName="Table_No" value="2" class="btn-check" name="Table_No" id="table_2" autocomplete="off">
+              <label class="btn btn-outline-primary" for="table_2">2</label>
+            
+              <input type="radio" formControlName="Table_No" value="3" class="btn-check" name="Table_No" id="table_3" autocomplete="off">
+              <label class="btn btn-outline-primary" for="table_3">3</label>
+
+              <input type="radio" formControlName="Table_No" value="4" class="btn-check" name="Table_No" id="table_4" autocomplete="off">
+              <label class="btn btn-outline-primary" for="table_4">4</label>
+
+              <input type="radio" formControlName="Table_No" value="5" class="btn-check" name="Table_No" id="table_5" autocomplete="off">
+              <label class="btn btn-outline-primary" for="table_5">5</label>
+
+              <input type="radio" formControlName="Table_No" value="6" class="btn-check" name="Table_No" id="table_6" autocomplete="off">
+              <label class="btn btn-outline-primary" for="table_6">6</label>
+
+              <input type="radio" formControlName="Table_No" value="7" class="btn-check" name="Table_No" id="table_7" autocomplete="off">
+              <label class="btn btn-outline-primary" for="table_7">7</label>
+            </div>
+          </div>
+        </div>
+        <button type="submit" [disabled]="!pizzaForm.valid" class="btn btn-primary w-100">Place Order</button>
+     </form> 
+
+    </div>
+    <div class="col-6 d-flex justify-content-center">
+      <img src="https://img.pizza/400/400" alt="mmm pizza">
     </div>
   </div>
 </div>
