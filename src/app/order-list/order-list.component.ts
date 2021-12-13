@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Order, OrderService } from '../order.service';
 
@@ -8,11 +8,9 @@ import { Order, OrderService } from '../order.service';
   styleUrls: ['./order-list.component.scss']
 })
 export class OrderListComponent implements OnInit {
-  orders!: Observable<Order[]>;
-  constructor(private orderService: OrderService) { }
+  @Input() orders!: Observable<Order[]>;
+  constructor() { }
 
   ngOnInit(): void {
-    this.orders = this.orderService.getOrders();
   }
-
 }

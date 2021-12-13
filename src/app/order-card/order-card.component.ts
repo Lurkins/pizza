@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Order, OrderService } from '../order.service';
+import { Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-order-card',
@@ -8,13 +9,15 @@ import { Order, OrderService } from '../order.service';
 })
 export class OrderCardComponent implements OnInit {
   @Input() order!: Order;
-  constructor(private orderService: OrderService) { }
+  @Output() deleteOrderEvent = new EventEmitter<number>();
+  constructor() { }
 
   ngOnInit(): void {
   }
 
   handleDeleteOrder(): void {
-    this.orderService.deleteOrder(this.order.Order_ID);
+    this.deleteOrderEvent.emit(this.order.Order_ID);
   }
+
 
 }

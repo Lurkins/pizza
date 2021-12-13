@@ -34,20 +34,13 @@ export class OrderService {
     return this.http.post<Order>(`/api/orders`, payload, httpOptions);
   }
 
-  deleteOrder(orderId: number): any {
+  deleteOrder(orderId: number): Observable<unknown> {
     const token = localStorage.getItem('access_token');
-    if (orderId && token) {
-      const httpOptions = {
-        headers: new HttpHeaders({
-          Authorization: `Bearer ${token}`
-        })
-      };
-      this.http.delete(`/api/orders/${orderId}`, httpOptions).subscribe(
-        res => {
-          console.log(res);
-        },
-        error => console.log('Error', error)
-      );
-    }
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: `Bearer ${token}`
+      })
+    };
+    return this.http.delete(`/api/orders/${orderId}`, httpOptions);
   }
 }

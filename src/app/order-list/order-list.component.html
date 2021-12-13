@@ -1,12 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
-      <h1>Upcoming Orders</h1>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-12">
-      <div class="order-list">
+      <div class="order-list overflow-scroll">
         <div *ngFor='let order of orders | async' class="order-item">
           <app-order-card [order]="order"></app-order-card>
         </div>
