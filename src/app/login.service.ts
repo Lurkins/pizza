@@ -30,7 +30,7 @@ export class LoginService {
           this.router.navigate(['orders']);
         },
         error => {
-          alert(error);
+          this.router.navigate(['error'], {state: {errorMsg: error}});
         }
       );
     }

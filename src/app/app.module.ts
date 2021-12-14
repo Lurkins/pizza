@@ -13,6 +13,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { OrderListComponent } from './order-list/order-list.component';
 import { OrderCardComponent } from './order-card/order-card.component';
 import { ErrorInterceptor } from './error.interceptor';
+import { ErrorPageComponent } from './error-page/error-page.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ErrorInterceptor } from './error.interceptor';
     OrderPizzaComponent,
     NavbarComponent,
     OrderListComponent,
-    OrderCardComponent
+    OrderCardComponent,
+    ErrorPageComponent
   ],
   imports: [
     BrowserModule,

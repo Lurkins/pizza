@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { LoginService } from '../login.service';
 import { Order, OrderService } from '../order.service';
-declare const bootstrap: any;
 
 interface Flavors {
   [key: string]: string;
@@ -17,9 +16,9 @@ interface Flavors {
 export class OrderPizzaComponent implements OnInit {
 
   constructor(
-    private loginService: LoginService,
     private orderService: OrderService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router
   ) { }
   pizzaForm = this.fb.group({
     Size: ['', Validators.required],
@@ -35,7 +34,6 @@ export class OrderPizzaComponent implements OnInit {
   submitError = false;
   isSaving = false;
   errorMsg = '';
-  modal!: { show: () => void; };
   flavors: Flavors = {
     CHEESE: 'three-cheese',
     SUPREME: 'supreme',
@@ -47,9 +45,6 @@ export class OrderPizzaComponent implements OnInit {
 
   ngOnInit(): void {
     this.orders$ = this.orderService.getOrders();
-    this.modal = new bootstrap.Modal(document.getElementById('myModal'), {
-      keyboard: false
-    });
 
     this.flavor?.valueChanges.subscribe(flavor => {
       this.activeFlavor = this.flavors[flavor];
@@ -90,21 +85,18 @@ export class OrderPizzaComponent implements OnInit {
       err => {
         this.isSaving = false;
         this.submitSuccess = false;
-        this.errorMsg = err;
-        this.modal.show();
+        this.router.navigate(['error'], {state: {errorMsg: err}});
       }
     );
   }
 
   deleteOrder(orderId: number): void {
     this.orderService.deleteOrder(orderId).subscribe(
-      (res) => {
-        console.log(res);
+      () => {
         this.orders$ = this.orderService.getOrders();
       },
       err => {
-        this.errorMsg = err;
-        this.modal.show();
+        this.router.navigate(['error'], {state: {errorMsg: err}});
       }
     );
   }
