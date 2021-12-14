@@ -55,14 +55,7 @@ export class OrderPizzaComponent implements OnInit {
       err => {
         this.isSaving = false;
         this.submitSuccess = false;
-        console.log(err.status);
-        if (err.error.msg) {
-          this.errorMsg = err.error.msg;
-        }
-
-        if (err.error.detail) {
-          this.errorMsg = err.error.detail;
-        }
+        this.errorMsg = err;
         this.modal.show();
       }
     );
@@ -74,13 +67,7 @@ export class OrderPizzaComponent implements OnInit {
         this.orders$ = this.orderService.getOrders();
       },
       err => {
-        if (err.error.msg) {
-          this.errorMsg = err.error.msg;
-        }
-
-        if (err.error.detail) {
-          this.errorMsg = err.error.detail;
-        }
+        this.errorMsg = err;
         this.modal.show();
       }
     );

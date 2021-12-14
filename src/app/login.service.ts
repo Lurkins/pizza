@@ -25,7 +25,9 @@ export class LoginService {
           localStorage.setItem('access_token', token.access_token);
           this.router.navigate(['order']);
         },
-        error => console.log('Error', error)
+        error => {
+          alert(error);
+        }
       );
     }
   }
