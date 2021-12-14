@@ -5,6 +5,10 @@ import { LoginService } from '../login.service';
 import { Order, OrderService } from '../order.service';
 declare const bootstrap: any;
 
+interface Flavors {
+  [key: string]: string;
+}
+
 @Component({
   selector: 'app-order-pizza',
   templateUrl: './order-pizza.component.html',
@@ -24,16 +28,29 @@ export class OrderPizzaComponent implements OnInit {
     Table_No: ['', Validators.required],
   });
   orders$!: Observable<Order[]>;
+  activeFlavor = 'crust';
   submitSuccess = false;
   submitError = false;
   isSaving = false;
   errorMsg = '';
   modal!: { show: () => void; };
+  flavors: Flavors = {
+    CHEESE: 'three-cheese',
+    SUPREME: 'supreme',
+    VEGGIE: 'veggie',
+    SICILIAN: 'sicilian',
+    GARDEN: 'garden',
+    PROSCIUTTO: 'prosciutto'
+  };
 
   ngOnInit(): void {
     this.orders$ = this.orderService.getOrders();
     this.modal = new bootstrap.Modal(document.getElementById('myModal'), {
       keyboard: false
+    });
+
+    this.pizzaForm.get('Flavor')?.valueChanges.subscribe(flav => {
+      this.activeFlavor = this.flavors[flav];
     });
   }
 
