@@ -18,45 +18,21 @@
   </div>
   <div class="row">
     <div class="col-9"> 
-      <div class="pizza-display d-flex justify-content-center mb-3">
-        <img src='{{ "assets/" + activeFlavor + ".png" }}' class="img-fluid" alt="mmm pizza">
+      <div class="pizza-display d-flex justify-content-center align-items-center  mb-3">
+        <img 
+          src='{{ "assets/" + activeFlavor + ".png" }}' 
+          [ngClass]="{
+            'small': activeSize === 'S', 
+            'medium': activeSize === 'M', 
+            'large': activeSize === 'L',
+            'regular': activeCrust === 'REGULAR',
+            'crispy': activeCrust === 'CRISPY',
+            'burnt': activeCrust === 'BURNT'
+          }"
+          alt="{{activeFlavor}}"
+        >
       </div>
       <form [formGroup]="pizzaForm" (ngSubmit)="onSubmitPizza()">
-        <div class="card mb-3">
-          <div class="card-header text-center">
-            <h2 class="fs-5">Size</h2>
-          </div>
-          <div class="card-body">
-            <div class="btn-group w-100" role="group" aria-label="Crust options">
-              <input type="radio" formControlName="Size" value="S" class="btn-check" name="Size" id="small" autocomplete="off">
-              <label class="btn btn-outline-primary" for="small">Small</label>
-            
-              <input type="radio" formControlName="Size" value="M" class="btn-check" name="Size" id="medium" autocomplete="off">
-              <label class="btn btn-outline-primary" for="medium">Medium</label>
-            
-              <input type="radio" formControlName="Size" value="L" class="btn-check" name="Size" id="large" autocomplete="off">
-              <label class="btn btn-outline-primary" for="large">Large</label>
-            </div>
-          </div>
-        </div>
-        <div class="card mb-3">
-          <div class="card-header text-center">
-            <h2 class="fs-5">Crust</h2>
-          </div>
-          <div class="card-body">
-            <div class="btn-group w-100" role="group" aria-label="Crust options">
-              <input type="radio" formControlName="Crust" value="REGULAR" class="btn-check" name="Crust" id="regular" autocomplete="off">
-              <label class="btn btn-outline-primary" for="regular">Regular</label>
-            
-              <input type="radio" formControlName="Crust" value="THIN" class="btn-check" name="Crust" id="thin" autocomplete="off">
-              <label class="btn btn-outline-primary" for="thin">Thin</label>
-            
-              <input type="radio" formControlName="Crust" value="DEEP" class="btn-check" name="Crust" id="deep" autocomplete="off">
-              <label class="btn btn-outline-primary" for="deep">Deep Dish</label>
-            </div>
-          </div>
-        </div>
-
         <div class="card mb-3">
           <div class="card-header text-center">
             <h2 class="fs-5">Flavor</h2>
@@ -83,7 +59,40 @@
             </div>
           </div>
         </div>
-
+        <div class="card mb-3">
+          <div class="card-header text-center">
+            <h2 class="fs-5">Size</h2>
+          </div>
+          <div class="card-body">
+            <div class="btn-group w-100" role="group" aria-label="Size options">
+              <input type="radio" formControlName="Size" value="S" class="btn-check" name="Size" id="small" autocomplete="off">
+              <label class="btn btn-outline-primary" for="small">Small</label>
+            
+              <input type="radio" formControlName="Size" value="M" class="btn-check" name="Size" id="medium" autocomplete="off">
+              <label class="btn btn-outline-primary" for="medium">Medium</label>
+            
+              <input type="radio" formControlName="Size" value="L" class="btn-check" name="Size" id="large" autocomplete="off">
+              <label class="btn btn-outline-primary" for="large">Large</label>
+            </div>
+          </div>
+        </div>
+        <div class="card mb-3">
+          <div class="card-header text-center">
+            <h2 class="fs-5">Crust</h2>
+          </div>
+          <div class="card-body">
+            <div class="btn-group w-100" role="group" aria-label="Crust options">
+              <input type="radio" formControlName="Crust" value="REGULAR" class="btn-check" name="Crust" id="regular" autocomplete="off">
+              <label class="btn btn-outline-primary" for="regular">Regular</label>
+            
+              <input type="radio" formControlName="Crust" value="CRISPY" class="btn-check" name="Crust" id="crispy" autocomplete="off">
+              <label class="btn btn-outline-primary" for="crispy">Crispy</label>
+            
+              <input type="radio" formControlName="Crust" value="BURNT" class="btn-check" name="Crust" id="burnt" autocomplete="off">
+              <label class="btn btn-outline-primary" for="burnt">Burnt</label>
+            </div>
+          </div>
+        </div>
         <div class="card mb-3">
           <div class="card-header text-center">
             <h2 class="fs-5">Table Number</h2>
@@ -152,7 +161,7 @@
             {{ errorMsg }}
           </div>
           <ng-template #defaultMsg>
-            There was an unknown error.
+            There was an error. Please try logging in again.
           </ng-template>
         </div>
       </div>

@@ -35,12 +35,6 @@ export class OrderService {
   }
 
   deleteOrder(orderId: number): Observable<unknown> {
-    const token = localStorage.getItem('access_token');
-    const httpOptions = {
-      headers: new HttpHeaders({
-        Authorization: `Bearer ${token}`
-      })
-    };
-    return this.http.delete(`/api/orders/${orderId}`, httpOptions);
+    return this.http.delete(`/api/orders/${orderId}`);
   }
 }
