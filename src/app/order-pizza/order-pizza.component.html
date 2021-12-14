@@ -18,10 +18,13 @@
   </div>
   <div class="row">
     <div class="col-9"> 
+      <div class="pizza-display d-flex justify-content-center mb-3">
+        <img src="assets/three-cheese.png" class="img-fluid" alt="mmm pizza">
+      </div>
       <form [formGroup]="pizzaForm" (ngSubmit)="onSubmitPizza()">
         <div class="card mb-3">
           <div class="card-header text-center">
-            <h2>Size</h2>
+            <h2 class="fs-5">Size</h2>
           </div>
           <div class="card-body">
             <div class="btn-group w-100" role="group" aria-label="Crust options">
@@ -38,7 +41,7 @@
         </div>
         <div class="card mb-3">
           <div class="card-header text-center">
-            <h2>Crust</h2>
+            <h2 class="fs-5">Crust</h2>
           </div>
           <div class="card-body">
             <div class="btn-group w-100" role="group" aria-label="Crust options">
@@ -56,7 +59,7 @@
 
         <div class="card mb-3">
           <div class="card-header text-center">
-            <h2>Flavor</h2>
+            <h2 class="fs-5">Flavor</h2>
           </div>
           <div class="card-body">
             <div class="btn-group w-100" role="group" aria-label="Flavor options">
@@ -83,7 +86,7 @@
 
         <div class="card mb-3">
           <div class="card-header text-center">
-            <h2>Table Number</h2>
+            <h2 class="fs-5">Table Number</h2>
           </div>
           <div class="card-body">
             <div class="btn-group w-100" role="group" aria-label="Flavor options">
@@ -118,11 +121,11 @@
             </div>
           </div>
         </div>
-        <button *ngIf="isSaving" class="btn btn-primary w-100" type="button" disabled>
+        <button *ngIf="isSaving" class="btn btn-primary w-100 mb-5" type="button" disabled>
           <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
           Saving...
         </button>
-        <button *ngIf="!isSaving" type="submit" [disabled]="!pizzaForm.valid" class="btn btn-primary w-100">Place Order</button>
+        <button *ngIf="!isSaving" type="submit" [disabled]="!pizzaForm.valid" class="btn btn-primary w-100 mb-5">Place Order</button>
      </form> 
     </div>
     <div class="col-3">
