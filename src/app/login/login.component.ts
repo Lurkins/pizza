@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { LoginService } from '../login.service';
 import { AbstractControl, FormBuilder, FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
@@ -20,9 +19,7 @@ export class LoginComponent implements OnInit {
   }
 
   handleLogin(): void {
-    if (this.loginForm.value) {
       this.loginService.login(this.loginForm.value);
-    }
   }
 
   get username(): AbstractControl | null {

@@ -74,10 +74,6 @@ export class OrderPizzaComponent implements OnInit {
     return this.pizzaForm.get('Flavor');
   }
 
-  handleLogout(): void {
-    this.loginService.logout();
-  }
-
   onSubmitPizza(): void {
     this.isSaving = true;
     this.submitSuccess = false;
@@ -104,7 +100,6 @@ export class OrderPizzaComponent implements OnInit {
     this.orderService.deleteOrder(orderId).subscribe(
       (res) => {
         console.log(res);
-
         this.orders$ = this.orderService.getOrders();
       },
       err => {
