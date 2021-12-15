@@ -15,13 +15,13 @@ Change directories into the project.
 ```
 cd pizza
 ```
-Install packages
+Install packages.
 
 ```
 npm install
 ```
 
-Run the app with npm run start
+Run the app with npm run start.
 
 ```
 npm run start
