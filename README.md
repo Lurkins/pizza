@@ -1,27 +1,32 @@
 # Pizza
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.7.
+This is a simple pizza ordering application. Sign in to create a pizza order for one of the tables in your imaginary restaurant. Choose from an array of sizes, crust styles, and flavors. Oops! You made a mistake? That's okay, you can cancel the order with the click of a button. Built with Angular and connected to a public pizza API.
 
-## Development server
+### Installing
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+From terminal, clone the repositiory.
 
-## Code scaffolding
+```
+git clone https://github.com/Lurkins/pizza.git
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Change directories into the project.
 
-## Build
+```
+cd pizza
+```
+Install packages
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+```
+npm install
+```
 
-## Running unit tests
+Run the app with npm run start
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```
+npm run start
+```
 
-## Running end-to-end tests
+Once the project has finished building, visit http://localhost:4200/ in a browser.
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Thank you and have a great day!
