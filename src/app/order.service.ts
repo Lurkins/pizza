@@ -16,7 +16,7 @@ export interface Order {
   providedIn: 'root'
 })
 export class OrderService {
-  orders: Order[] = [];
+
   constructor(private http: HttpClient) { }
 
   getOrders(): Observable<Order[]> {
