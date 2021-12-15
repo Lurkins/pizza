@@ -27,6 +27,14 @@ Run the app with npm run start.
 npm run start
 ```
 
+---
+**NOTE**
+
+The Angular CLI requires a minimum Node.js version of either v10.13 or v12.0
+If you need to update Node.js visit https://nodejs.org/ for instructions.
+
+---
+
 Once the project has finished building, visit http://localhost:4200/ in a browser.
 
 Thank you and have a great day!
