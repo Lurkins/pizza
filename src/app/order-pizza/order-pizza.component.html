@@ -3,144 +3,145 @@
     <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
   </symbol>
 </svg>
-
-<div class="container">
-  <div class="row">
-    <div class="col-12 d-flex justify-content-between">
-      <h1>Pizza Builder</h1>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-9"> 
-      <div class="pizza-display d-flex justify-content-center align-items-center  mb-3">
-        <img 
-          src='{{ "assets/" + activeFlavor + ".png" }}' 
-          [ngClass]="{
-            'small': activeSize === 'S', 
-            'medium': activeSize === 'M', 
-            'large': activeSize === 'L',
-            'regular': activeCrust === 'REGULAR',
-            'crispy': activeCrust === 'CRISPY',
-            'burnt': activeCrust === 'BURNT'
-          }"
-          alt="{{activeFlavor}}"
-        >
+<div class="wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 d-flex justify-content-between">
+        <h1>Pizza Builder</h1>
       </div>
-      <form [formGroup]="pizzaForm" (ngSubmit)="onSubmitPizza()">
-        <div class="card mb-3">
-          <div class="card-header text-center">
-            <h2 class="fs-5">Flavor</h2>
-          </div>
-          <div class="card-body">
-            <div class="btn-group w-100" role="group" aria-label="Flavor options">
-              <input type="radio" formControlName="Flavor" value="CHEESE" class="btn-check" name="Flavor" id="cheese" autocomplete="off">
-              <label class="btn btn-outline-primary" for="cheese">Cheese</label>
-            
-              <input type="radio" formControlName="Flavor" value="SICILIAN" class="btn-check" name="Flavor" id="sicilian" autocomplete="off">
-              <label class="btn btn-outline-primary" for="sicilian">Sicilian</label>
-            
-              <input type="radio" formControlName="Flavor" value="SUPREME" class="btn-check" name="Flavor" id="supreme" autocomplete="off">
-              <label class="btn btn-outline-primary" for="supreme">Supreme</label>
-
-              <input type="radio" formControlName="Flavor" value="PROSCIUTTO" class="btn-check" name="Flavor" id="prosciutto" autocomplete="off">
-              <label class="btn btn-outline-primary" for="prosciutto">Prosciutto</label>
-
-              <input type="radio" formControlName="Flavor" value="GARDEN" class="btn-check" name="Flavor" id="garden" autocomplete="off">
-              <label class="btn btn-outline-primary" for="garden">Garden</label>
-
-              <input type="radio" formControlName="Flavor" value="VEGGIE" class="btn-check" name="Flavor" id="veggie" autocomplete="off">
-              <label class="btn btn-outline-primary" for="veggie">Veggie</label>
-            </div>
-          </div>
-        </div>
-        <div class="card mb-3">
-          <div class="card-header text-center">
-            <h2 class="fs-5">Size</h2>
-          </div>
-          <div class="card-body">
-            <div class="btn-group w-100" role="group" aria-label="Size options">
-              <input type="radio" formControlName="Size" value="S" class="btn-check" name="Size" id="small" autocomplete="off">
-              <label class="btn btn-outline-primary" for="small">Small</label>
-            
-              <input type="radio" formControlName="Size" value="M" class="btn-check" name="Size" id="medium" autocomplete="off">
-              <label class="btn btn-outline-primary" for="medium">Medium</label>
-            
-              <input type="radio" formControlName="Size" value="L" class="btn-check" name="Size" id="large" autocomplete="off">
-              <label class="btn btn-outline-primary" for="large">Large</label>
-            </div>
-          </div>
-        </div>
-        <div class="card mb-3">
-          <div class="card-header text-center">
-            <h2 class="fs-5">Crust</h2>
-          </div>
-          <div class="card-body">
-            <div class="btn-group w-100" role="group" aria-label="Crust options">
-              <input type="radio" formControlName="Crust" value="REGULAR" class="btn-check" name="Crust" id="regular" autocomplete="off">
-              <label class="btn btn-outline-primary" for="regular">Regular</label>
-            
-              <input type="radio" formControlName="Crust" value="CRISPY" class="btn-check" name="Crust" id="crispy" autocomplete="off">
-              <label class="btn btn-outline-primary" for="crispy">Crispy</label>
-            
-              <input type="radio" formControlName="Crust" value="BURNT" class="btn-check" name="Crust" id="burnt" autocomplete="off">
-              <label class="btn btn-outline-primary" for="burnt">Burnt</label>
-            </div>
-          </div>
-        </div>
-        <div class="card mb-3">
-          <div class="card-header text-center">
-            <h2 class="fs-5">Table Number</h2>
-          </div>
-          <div class="card-body">
-            <div class="btn-group w-100" role="group" aria-label="Flavor options">
-              <input type="radio" formControlName="Table_No" value="1" class="btn-check" name="Table_No" id="table_1" autocomplete="off">
-              <label class="btn btn-outline-primary" for="table_1">1</label>
-            
-              <input type="radio" formControlName="Table_No" value="2" class="btn-check" name="Table_No" id="table_2" autocomplete="off">
-              <label class="btn btn-outline-primary" for="table_2">2</label>
-            
-              <input type="radio" formControlName="Table_No" value="3" class="btn-check" name="Table_No" id="table_3" autocomplete="off">
-              <label class="btn btn-outline-primary" for="table_3">3</label>
-
-              <input type="radio" formControlName="Table_No" value="4" class="btn-check" name="Table_No" id="table_4" autocomplete="off">
-              <label class="btn btn-outline-primary" for="table_4">4</label>
-
-              <input type="radio" formControlName="Table_No" value="5" class="btn-check" name="Table_No" id="table_5" autocomplete="off">
-              <label class="btn btn-outline-primary" for="table_5">5</label>
-
-              <input type="radio" formControlName="Table_No" value="6" class="btn-check" name="Table_No" id="table_6" autocomplete="off">
-              <label class="btn btn-outline-primary" for="table_6">6</label>
-
-              <input type="radio" formControlName="Table_No" value="7" class="btn-check" name="Table_No" id="table_7" autocomplete="off">
-              <label class="btn btn-outline-primary" for="table_7">7</label>
-            </div>
-          </div>
-        </div>
-        <div class="alert-container">
-          <div *ngIf="submitSuccess" class="alert alert-success d-flex align-items-center" role="alert">
-            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
-            <div>
-              Order successfully saved.
-            </div>
-          </div>
-        </div>
-        <button *ngIf="isSaving" class="btn btn-primary w-100 mb-5" type="button" disabled>
-          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-          Saving...
-        </button>
-        <button *ngIf="!isSaving" type="submit" [disabled]="!pizzaForm.valid" class="btn btn-primary w-100 mb-5">Place Order</button>
-     </form> 
     </div>
-    <div class="col-3">
-      <div *ngIf="deleteSuccess" class="alert alert-success d-flex align-items-center" role="alert">
-        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
-        <div>
-          Order Cancelled.
+    <div class="row">
+      <div class="col-9"> 
+        <div class="pizza-display d-flex justify-content-center align-items-center  mb-3">
+          <img 
+            src='{{ "assets/" + activeFlavor + ".png" }}' 
+            [ngClass]="{
+              'small': activeSize === 'S', 
+              'medium': activeSize === 'M', 
+              'large': activeSize === 'L',
+              'regular': activeCrust === 'REGULAR',
+              'crispy': activeCrust === 'CRISPY',
+              'burnt': activeCrust === 'BURNT'
+            }"
+            alt="{{activeFlavor}}"
+          >
         </div>
+        <form [formGroup]="pizzaForm" (ngSubmit)="onSubmitPizza()">
+          <div class="card mb-3">
+            <div class="card-header text-center">
+              <h2 class="fs-5">Flavor</h2>
+            </div>
+            <div class="card-body">
+              <div class="btn-group w-100" role="group" aria-label="Flavor options">
+                <input type="radio" formControlName="Flavor" value="CHEESE" class="btn-check" name="Flavor" id="cheese" autocomplete="off">
+                <label class="btn btn-outline-primary" for="cheese">Cheese</label>
+              
+                <input type="radio" formControlName="Flavor" value="SICILIAN" class="btn-check" name="Flavor" id="sicilian" autocomplete="off">
+                <label class="btn btn-outline-primary" for="sicilian">Sicilian</label>
+              
+                <input type="radio" formControlName="Flavor" value="SUPREME" class="btn-check" name="Flavor" id="supreme" autocomplete="off">
+                <label class="btn btn-outline-primary" for="supreme">Supreme</label>
+
+                <input type="radio" formControlName="Flavor" value="PROSCIUTTO" class="btn-check" name="Flavor" id="prosciutto" autocomplete="off">
+                <label class="btn btn-outline-primary" for="prosciutto">Prosciutto</label>
+
+                <input type="radio" formControlName="Flavor" value="GARDEN" class="btn-check" name="Flavor" id="garden" autocomplete="off">
+                <label class="btn btn-outline-primary" for="garden">Garden</label>
+
+                <input type="radio" formControlName="Flavor" value="VEGGIE" class="btn-check" name="Flavor" id="veggie" autocomplete="off">
+                <label class="btn btn-outline-primary" for="veggie">Veggie</label>
+              </div>
+            </div>
+          </div>
+          <div class="card mb-3">
+            <div class="card-header text-center">
+              <h2 class="fs-5">Size</h2>
+            </div>
+            <div class="card-body">
+              <div class="btn-group w-100" role="group" aria-label="Size options">
+                <input type="radio" formControlName="Size" value="S" class="btn-check" name="Size" id="small" autocomplete="off">
+                <label class="btn btn-outline-primary" for="small">Small</label>
+              
+                <input type="radio" formControlName="Size" value="M" class="btn-check" name="Size" id="medium" autocomplete="off">
+                <label class="btn btn-outline-primary" for="medium">Medium</label>
+              
+                <input type="radio" formControlName="Size" value="L" class="btn-check" name="Size" id="large" autocomplete="off">
+                <label class="btn btn-outline-primary" for="large">Large</label>
+              </div>
+            </div>
+          </div>
+          <div class="card mb-3">
+            <div class="card-header text-center">
+              <h2 class="fs-5">Crust</h2>
+            </div>
+            <div class="card-body">
+              <div class="btn-group w-100" role="group" aria-label="Crust options">
+                <input type="radio" formControlName="Crust" value="REGULAR" class="btn-check" name="Crust" id="regular" autocomplete="off">
+                <label class="btn btn-outline-primary" for="regular">Regular</label>
+              
+                <input type="radio" formControlName="Crust" value="CRISPY" class="btn-check" name="Crust" id="crispy" autocomplete="off">
+                <label class="btn btn-outline-primary" for="crispy">Crispy</label>
+              
+                <input type="radio" formControlName="Crust" value="BURNT" class="btn-check" name="Crust" id="burnt" autocomplete="off">
+                <label class="btn btn-outline-primary" for="burnt">Burnt</label>
+              </div>
+            </div>
+          </div>
+          <div class="card mb-3">
+            <div class="card-header text-center">
+              <h2 class="fs-5">Table Number</h2>
+            </div>
+            <div class="card-body">
+              <div class="btn-group w-100" role="group" aria-label="Flavor options">
+                <input type="radio" formControlName="Table_No" value="1" class="btn-check" name="Table_No" id="table_1" autocomplete="off">
+                <label class="btn btn-outline-primary" for="table_1">1</label>
+              
+                <input type="radio" formControlName="Table_No" value="2" class="btn-check" name="Table_No" id="table_2" autocomplete="off">
+                <label class="btn btn-outline-primary" for="table_2">2</label>
+              
+                <input type="radio" formControlName="Table_No" value="3" class="btn-check" name="Table_No" id="table_3" autocomplete="off">
+                <label class="btn btn-outline-primary" for="table_3">3</label>
+
+                <input type="radio" formControlName="Table_No" value="4" class="btn-check" name="Table_No" id="table_4" autocomplete="off">
+                <label class="btn btn-outline-primary" for="table_4">4</label>
+
+                <input type="radio" formControlName="Table_No" value="5" class="btn-check" name="Table_No" id="table_5" autocomplete="off">
+                <label class="btn btn-outline-primary" for="table_5">5</label>
+
+                <input type="radio" formControlName="Table_No" value="6" class="btn-check" name="Table_No" id="table_6" autocomplete="off">
+                <label class="btn btn-outline-primary" for="table_6">6</label>
+
+                <input type="radio" formControlName="Table_No" value="7" class="btn-check" name="Table_No" id="table_7" autocomplete="off">
+                <label class="btn btn-outline-primary" for="table_7">7</label>
+              </div>
+            </div>
+          </div>
+          <div class="alert-container">
+            <div *ngIf="submitSuccess" class="alert alert-success d-flex align-items-center" role="alert">
+              <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+              <div>
+                Order successfully saved.
+              </div>
+            </div>
+          </div>
+          <button *ngIf="isSaving" class="btn btn-primary w-100 mb-5" type="button" disabled>
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Saving...
+          </button>
+          <button *ngIf="!isSaving" type="submit" [disabled]="!pizzaForm.valid" class="btn btn-primary w-100 mb-5">Place Order</button>
+      </form> 
       </div>
-      <div *ngIf="orders$">
-        <div *ngFor='let order of orders$ | async' class="order-item">
-          <app-order-card [order]="order" (deleteOrderEvent)="deleteOrder($event)"></app-order-card>
+      <div class="col-3">
+        <div *ngIf="deleteSuccess" class="alert alert-success d-flex align-items-center" role="alert">
+          <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+          <div>
+            Order Cancelled.
+          </div>
+        </div>
+        <div *ngIf="orders$">
+          <div *ngFor='let order of orders$ | async' class="order-item">
+            <app-order-card [order]="order" (deleteOrderEvent)="deleteOrder($event)"></app-order-card>
+          </div>
         </div>
       </div>
     </div>
