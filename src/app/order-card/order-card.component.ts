@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Order, OrderService } from '../order.service';
+import { Order, OrderService } from '../services/order-service/order.service';
 import { Output, EventEmitter } from '@angular/core';
 
 @Component({

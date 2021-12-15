@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Order, OrderService } from '../order.service';
+import { Order, OrderService } from '../services/order-service/order.service';
 
 @Component({
   selector: 'app-order-list',

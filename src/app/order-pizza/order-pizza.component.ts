@@ -3,7 +3,7 @@ import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import { Order, OrderService } from '../order.service';
+import { Order, OrderService } from '../services/order-service/order.service';
 
 interface Flavors {
   [key: string]: string;

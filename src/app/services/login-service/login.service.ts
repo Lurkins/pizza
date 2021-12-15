@@ -49,9 +49,4 @@ export class LoginService {
       this.logged.next(false);
     }
   }
-
-  // get isLoggedIn(): any {
-  //   return this.isLogged;
-  //   // return localStorage.getItem('access_token') !== null ? true : false;
-  // }
 }

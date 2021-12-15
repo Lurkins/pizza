@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from '../login.service';
-import { AbstractControl, FormBuilder, FormControl } from '@angular/forms';
+import { LoginService } from '../services/login-service/login.service';
+import { AbstractControl, FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
 
 @Component({

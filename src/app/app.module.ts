@@ -12,7 +12,7 @@ import { OrderPizzaComponent } from './order-pizza/order-pizza.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { OrderListComponent } from './order-list/order-list.component';
 import { OrderCardComponent } from './order-card/order-card.component';
-import { ErrorInterceptor } from './error.interceptor';
+import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { ErrorPageComponent } from './error-page/error-page.component';
 
 @NgModule({
@@ -33,7 +33,7 @@ import { ErrorPageComponent } from './error-page/error-page.component';
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
