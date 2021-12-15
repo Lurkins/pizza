@@ -1,3 +1,39 @@
+.wrapper {
+    min-height: 100vh;
+}
+  
 .alert-container {
     height: 70px;
+}
+
+.pizza-display {
+    width: auto;
+    height: 300px;
+}
+
+.regular {
+    filter: brightness(100%) saturate(100%); 
+}
+
+.crispy {
+    filter: brightness(75%) saturate(140%); 
+}
+
+.burnt {
+    filter: brightness(60%) saturate(180%); 
+}
+
+.small {
+    width: 200px;
+    height: 200px;
+}
+
+.medium {
+    width: 250px;
+    height: 250px;
+}
+
+.large {
+    width: 300px;
+    height: 300px;
 }

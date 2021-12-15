@@ -1,21 +1,25 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { LoginService } from '../login.service';
-import { Order, OrderService } from '../order.service';
-declare const bootstrap: any;
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
+import { Order, OrderService } from '../services/order-service/order.service';
+
+interface Flavors {
+  [key: string]: string;
+}
 
 @Component({
   selector: 'app-order-pizza',
   templateUrl: './order-pizza.component.html',
   styleUrls: ['./order-pizza.component.scss']
 })
-export class OrderPizzaComponent implements OnInit {
+export class OrderPizzaComponent implements OnInit, OnDestroy {
 
   constructor(
-    private loginService: LoginService,
     private orderService: OrderService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router
   ) { }
   pizzaForm = this.fb.group({
     Size: ['', Validators.required],
@@ -24,52 +28,93 @@ export class OrderPizzaComponent implements OnInit {
     Table_No: ['', Validators.required],
   });
   orders$!: Observable<Order[]>;
+  refreshOrders$ = new BehaviorSubject<boolean>(true);
+  activeFlavor = 'crust';
+  activeSize = 'M';
+  activeCrust = 'regular';
   submitSuccess = false;
+  deleteSuccess = false;
   submitError = false;
   isSaving = false;
-  errorMsg = '';
-  modal!: { show: () => void; };
+  isLoadingList = false;
+  flavors: Flavors = {
+    CHEESE: 'three-cheese',
+    SUPREME: 'supreme',
+    VEGGIE: 'veggie',
+    SICILIAN: 'sicilian',
+    GARDEN: 'garden',
+    PROSCIUTTO: 'prosciutto'
+  };
+  subscription: Subscription = new Subscription();
 
   ngOnInit(): void {
-    this.orders$ = this.orderService.getOrders();
-    this.modal = new bootstrap.Modal(document.getElementById('myModal'), {
-      keyboard: false
+    this.orders$ = this.refreshOrders$.pipe(switchMap(_ => this.orderService.getOrders()));
+
+    const flavorSubscription = this.flavor?.valueChanges.subscribe(flavor => {
+      this.activeFlavor = this.flavors[flavor];
     });
+    this.subscription.add(flavorSubscription);
+
+    const sizeSubscription = this.size?.valueChanges.subscribe(size => {
+      this.activeSize = size;
+    });
+    this.subscription.add(sizeSubscription);
+
+    const crustSubscription = this.crust?.valueChanges.subscribe(crust => {
+      this.activeCrust = crust;
+    });
+    this.subscription.add(crustSubscription);
   }
 
-  handleLogout(): void {
-    this.loginService.logout();
+  get size(): AbstractControl | null {
+    return this.pizzaForm.get('Size');
+  }
+
+  get crust(): AbstractControl | null {
+    return this.pizzaForm.get('Crust');
+  }
+
+  get flavor(): AbstractControl | null {
+    return this.pizzaForm.get('Flavor');
   }
 
   onSubmitPizza(): void {
     this.isSaving = true;
     this.submitSuccess = false;
-    this.orderService.createOrder(this.pizzaForm.value).subscribe(
-      order => {
-        this.orders$ = this.orderService.getOrders();
+    const orderSubscription = this.orderService.createOrder(this.pizzaForm.value).subscribe(
+      () => {
+        this.refreshOrders$.next(true);
         this.isSaving = false;
         this.submitSuccess = true;
         this.pizzaForm.reset();
+        this.activeFlavor = 'crust';
+        this.activeSize = 'M';
         setTimeout(() => this.submitSuccess = false, 3200);
       },
       err => {
         this.isSaving = false;
         this.submitSuccess = false;
-        this.errorMsg = err;
-        this.modal.show();
+        this.router.navigate(['error'], {state: {errorMsg: err}});
       }
     );
+    this.subscription.add(orderSubscription);
   }
 
   deleteOrder(orderId: number): void {
-    this.orderService.deleteOrder(orderId).subscribe(
+    const deleteSubscription = this.orderService.deleteOrder(orderId).subscribe(
       () => {
-        this.orders$ = this.orderService.getOrders();
+        this.refreshOrders$.next(true);
+        this.deleteSuccess = true;
+        setTimeout(() => this.deleteSuccess = false, 3200);
       },
       err => {
-        this.errorMsg = err;
-        this.modal.show();
+        this.router.navigate(['error'], {state: {errorMsg: err}});
       }
     );
+    this.subscription.add(deleteSubscription);
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }

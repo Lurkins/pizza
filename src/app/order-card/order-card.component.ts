@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Order, OrderService } from '../order.service';
+import { Order, OrderService } from '../services/order-service/order.service';
 import { Output, EventEmitter } from '@angular/core';
 
 @Component({
@@ -7,13 +7,10 @@ import { Output, EventEmitter } from '@angular/core';
   templateUrl: './order-card.component.html',
   styleUrls: ['./order-card.component.scss']
 })
-export class OrderCardComponent implements OnInit {
+export class OrderCardComponent {
   @Input() order!: Order;
   @Output() deleteOrderEvent = new EventEmitter<number>();
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
   handleDeleteOrder(): void {
     this.deleteOrderEvent.emit(this.order.Order_ID);
