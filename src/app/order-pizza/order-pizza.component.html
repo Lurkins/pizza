@@ -4,14 +4,14 @@
   </symbol>
 </svg>
 <div class="wrapper">
-  <div class="container">
+  <div class="container-fluid">
     <div class="row">
       <div class="col-12 d-flex justify-content-between">
         <h1>Pizza Builder</h1>
       </div>
     </div>
     <div class="row">
-      <div class="col-9"> 
+      <div class="col-12 col-lg-9"> 
         <div class="pizza-display d-flex justify-content-center align-items-center  mb-3">
           <img 
             src='{{ "assets/" + activeFlavor + ".png" }}' 
@@ -131,7 +131,7 @@
           <button *ngIf="!isSaving" type="submit" [disabled]="!pizzaForm.valid" class="btn btn-primary w-100 mb-5">Place Order</button>
       </form> 
       </div>
-      <div class="col-3">
+      <div class="col-lg-3">
         <div *ngIf="deleteSuccess" class="alert alert-success d-flex align-items-center" role="alert">
           <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
           <div>
